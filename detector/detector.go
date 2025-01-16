@@ -739,6 +739,9 @@ func (I *Detector) getLastKey(path string) (string, bool) {
 	if path[sz-1] == ']' { // path likes key[n]
 		ed := strings.LastIndexByte(path, '[')
 		st := strings.LastIndexByte(path, '/')
+		if st+1 >= ed {
+			return path, false
+		}
 		return path[st+1 : ed], true
 	} else {
 		pos := strings.LastIndexByte(path, '/')
